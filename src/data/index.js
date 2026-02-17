@@ -3,6 +3,12 @@ import Ceiling from "../../public/images/ceiling.jpeg";
 import Ceil from "../../public/images/ceil.jpeg";
 import ShopInterior from "../../public/images/store.jpeg";
 import Aluminumworks from "../../public/images/aluminumworks.jpeg";
+import modularKitchen from "../../public/images/modularkitchen.jpeg";
+import salon from "../../public/images/salon.jpeg";
+import Greenceil from "../../public/images/greenceil.jpeg";
+import Plywoods from "../../public/images/plywood.jpeg";
+import AlumiDoor from "../../public/images/Aluminidoor.png";
+import MosquitoNet from "../../public/images/net.jpeg";
 
 export const projects = [
   {
@@ -111,36 +117,36 @@ export const servicesList = [
 
 export const galleryItems = [
   {
-    src: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?w=900&q=85&auto=format&fit=crop",
+    src: salon,
+    alt: "Sage green salon",
+    caption: "Sage Green Salon · Nagercoil",
+    wide: true,
+  },
+  {
+    src: modularKitchen,
     alt: "Cream luxury kitchen",
-    caption: "The Cream Kitchen · Geneva",
+    caption: "The Cream Kitchen · Nagercoil",
+  },
+  {
+    src: Greenceil,
+    alt: "Luxury spa Wall ceiling",
+    caption: "Marble Wall ceiling · Chennai",
+  },
+  {
+    src: AlumiDoor,
+    alt: "Aluminium door for bedroom",
+    caption: "Aluminium Door · Nagercoil",
     wide: true,
   },
   {
-    src: "https://images.unsplash.com/photo-1618219908412-a29a1bb7b86e?w=600&q=85&auto=format&fit=crop",
-    alt: "Sage green bedroom",
-    caption: "Sage Suite · London",
+    src: Plywoods,
+    alt: "Luxury hotel",
+    caption: "The Enterance Room · Kochin",
   },
   {
-    src: "https://images.unsplash.com/photo-1603969072881-b0fc7f3d77d7?w=600&q=85&auto=format&fit=crop",
-    alt: "Luxury spa bathroom",
-    caption: "Marble Spa · Monaco",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=900&q=85&auto=format&fit=crop",
-    alt: "Luxury dining room",
-    caption: "The Dining Room · Paris",
-    wide: true,
-  },
-  {
-    src: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?w=600&q=85&auto=format&fit=crop",
-    alt: "Modern cream living room",
-    caption: "Ivory Living · Dubai",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=600&q=85&auto=format&fit=crop",
-    alt: "Luxury bedroom detail",
-    caption: "Master Suite · Florence",
+    src: MosquitoNet,
+    alt: "MosquitoNet windows",
+    caption: "MosquitoNet · Nagercoil",
   },
 ];
 
