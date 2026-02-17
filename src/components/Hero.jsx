@@ -1,4 +1,5 @@
 import T from "../styles/tokens";
+import HomeImg from "../../public/images/HomeImages.png";
 
 export default function Hero() {
   return (
@@ -184,7 +185,7 @@ export default function Hero() {
               transform: "rotate(180deg)",
             }}
           >
-            Paris · Milan · New York
+            Chennai · Kanyakumari ·
           </span>
         </div>
 
@@ -200,7 +201,8 @@ export default function Hero() {
         >
           <img
             className="hero-img"
-            src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=85&auto=format&fit=crop"
+            src={HomeImg}
+            // src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=85&auto=format&fit=crop"
             alt="Luxury cream living room"
             style={{
               width: "100%",
@@ -233,9 +235,9 @@ export default function Hero() {
           }}
         >
           {[
-            ["140+", "Projects Delivered"],
-            ["12", "Years of Excellence"],
-            ["8", "Design Awards"],
+            ["100+", "Projects Delivered"],
+            ["5", "Years of Excellence"],
+            // ["8", "Design Awards"],
           ].map(([n, l], i) => (
             <div key={i}>
               {i > 0 && (
