@@ -1,4 +1,4 @@
-# Élara Voss — Interior Design Portfolio (Vite + React)
+# Haridesigns Interior Design Portfolio (Vite + React)
 
 A luxury interior design portfolio built with **Vite 5** + **React 18**.
 Cream & mint green palette, real photography, smooth animations.
