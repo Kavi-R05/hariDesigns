@@ -20,7 +20,7 @@ export default function Footer() {
           }}
         >
           Hari{" "}
-          <em style={{ fontStyle: "italic", color: T.mintLight }}>Designs</em>{" "}
+          <em style={{ fontStyle: "italic", color: T.mintLight }}>Interiors</em>{" "}
         </div>
         <div
           style={{
