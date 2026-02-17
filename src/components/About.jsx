@@ -60,7 +60,7 @@ export default function About() {
           style={{
             position: "absolute",
             top: "2rem",
-            right: "5.5rem",
+            right: "1rem",
             background: T.mintDark,
             color: T.white,
             padding: ".8rem 1.4rem",
