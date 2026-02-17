@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useScrolledNav } from "../hooks";
 import T from "../styles/tokens";
-import Logo from "../../public/images/hrlogo.jpeg";
+import Logo from "../../public/images/hrlogo.png";
 
 const links = [
   ["#work", "Projects"],

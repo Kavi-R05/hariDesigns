@@ -35,7 +35,7 @@ export default function Footer() {
           {[
             {
               name: "Instagram",
-              url: "https://www.instagram.com/your_username",
+              url: "https://www.instagram.com/hari_interiors_designs",
             },
           ].map((s) => (
             <a

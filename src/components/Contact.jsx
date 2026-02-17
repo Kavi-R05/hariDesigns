@@ -1,21 +1,31 @@
 import { SectionTag } from "./UI";
 import T from "../styles/tokens";
+import { useEffect, useState } from "react";
 
-const inputStyle = {
+const inputStyle = (isMobile) => ({
   width: "100%",
   background: "transparent",
   border: "none",
   borderBottom: `1px solid ${T.creamDeep}`,
-  padding: ".8rem 0",
+  padding: isMobile ? ".6rem 0" : ".8rem 0",
   fontFamily: "'Raleway',sans-serif",
   fontSize: ".88rem",
   fontWeight: 300,
   color: T.charcoal,
   outline: "none",
   transition: "border-color .3s",
-};
+});
 
 export default function Contact() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const focus = (e) => (e.target.style.borderBottomColor = T.mintDeep);
   const blur = (e) => (e.target.style.borderBottomColor = T.creamDeep);
 
@@ -25,15 +35,15 @@ export default function Contact() {
       className="contact-grid"
       style={{
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
-        minHeight: "70vh",
+        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", // Stack on mobile
+        minHeight: isMobile ? "auto" : "70vh",
       }}
     >
-      {/* Left */}
+      {/* Left Column: Information */}
       <div
         style={{
           background: T.mintDark,
-          padding: "7rem 5rem",
+          padding: isMobile ? "4rem 1.5rem" : "7rem 5rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -43,7 +53,7 @@ export default function Contact() {
         <h2
           style={{
             fontFamily: "'Playfair Display',serif",
-            fontSize: "clamp(2.5rem,4vw,4rem)",
+            fontSize: isMobile ? "2.5rem" : "clamp(2.5rem,4vw,4rem)",
             fontWeight: 300,
             color: T.white,
             lineHeight: 1.1,
@@ -60,7 +70,7 @@ export default function Contact() {
         <p
           style={{
             fontSize: ".85rem",
-            lineHeight: 1.9,
+            lineHeight: 1.8,
             color: "rgba(255,255,255,.6)",
             maxWidth: 400,
             marginBottom: "3rem",
@@ -69,8 +79,8 @@ export default function Contact() {
           Every great interior begins with a conversation. Tell us about your
           space, your vision, and how you live — we'll handle the rest.
         </p>
+
         {[
-          // ["Studio", "12 Rue du Bac, 75007 Paris"],
           ["Email", "harisuthan7716@gmail.com"],
           ["Phone", "+91 82206 02993"],
           ["Hours", "Mon–Sat, 9:00 AM – 6:00 PM"],
@@ -79,9 +89,9 @@ export default function Contact() {
             key={l}
             style={{
               display: "flex",
-              gap: "1.5rem",
+              gap: isMobile ? "1rem" : "1.5rem",
               alignItems: "baseline",
-              marginBottom: "1.5rem",
+              marginBottom: "1.2rem",
             }}
           >
             <span
@@ -90,23 +100,29 @@ export default function Contact() {
                 letterSpacing: ".22em",
                 textTransform: "uppercase",
                 color: T.mintLight,
-                minWidth: 70,
+                minWidth: isMobile ? 60 : 70,
               }}
             >
               {l}
             </span>
-            <span style={{ fontSize: ".85rem", color: "rgba(255,255,255,.7)" }}>
+            <span
+              style={{
+                fontSize: isMobile ? ".8rem" : ".85rem",
+                color: "rgba(255,255,255,.7)",
+                wordBreak: "break-word", // Prevent email overflow on tiny screens
+              }}
+            >
               {v}
             </span>
           </div>
         ))}
       </div>
 
-      {/* Right */}
+      {/* Right Column: Form */}
       <div
         style={{
           background: T.cream,
-          padding: "7rem 5rem",
+          padding: isMobile ? "4rem 1.5rem" : "7rem 5rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -115,29 +131,18 @@ export default function Contact() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "2rem",
-            marginBottom: "2rem",
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", // Name fields stack on mobile
+            gap: isMobile ? "1rem" : "2rem",
+            marginBottom: "1.5rem",
           }}
         >
           {["First Name", "Last Name"].map((label) => (
             <div key={label}>
-              <label
-                style={{
-                  display: "block",
-                  fontSize: ".6rem",
-                  letterSpacing: ".2em",
-                  textTransform: "uppercase",
-                  color: T.mintDeep,
-                  marginBottom: ".6rem",
-                }}
-              >
-                {label}
-              </label>
+              <label style={labelStyle}>{label}</label>
               <input
                 type="text"
                 placeholder={`Your ${label.toLowerCase()}`}
-                style={inputStyle}
+                style={inputStyle(isMobile)}
                 onFocus={focus}
                 onBlur={blur}
               />
@@ -147,58 +152,40 @@ export default function Contact() {
 
         {[
           ["Email Address", "your@email.com", "email"],
-          ["Project Type", "Residential / Commercial / Hospitality", "text"],
+          ["Project Type", "Residential / Commercial", "text"],
           ["Budget Range", "e.g. ₹50,000 – ₹150,000", "text"],
         ].map(([label, ph, type]) => (
-          <div key={label} style={{ marginBottom: "2rem" }}>
-            <label
-              style={{
-                display: "block",
-                fontSize: ".6rem",
-                letterSpacing: ".2em",
-                textTransform: "uppercase",
-                color: T.mintDeep,
-                marginBottom: ".6rem",
-              }}
-            >
-              {label}
-            </label>
+          <div key={label} style={{ marginBottom: "1.5rem" }}>
+            <label style={labelStyle}>{label}</label>
             <input
               type={type}
               placeholder={ph}
-              style={inputStyle}
+              style={inputStyle(isMobile)}
               onFocus={focus}
               onBlur={blur}
             />
           </div>
         ))}
 
-        <div style={{ marginBottom: "2rem" }}>
-          <label
-            style={{
-              display: "block",
-              fontSize: ".6rem",
-              letterSpacing: ".2em",
-              textTransform: "uppercase",
-              color: T.mintDeep,
-              marginBottom: ".6rem",
-            }}
-          >
-            Tell Us About Your Project
-          </label>
+        <div style={{ marginBottom: "2.5rem" }}>
+          <label style={labelStyle}>Tell Us About Your Project</label>
           <textarea
-            rows={4}
-            placeholder="Describe your space, your vision, and the feeling you'd like to create..."
-            style={{ ...inputStyle, resize: "none" }}
+            rows={isMobile ? 3 : 4}
+            placeholder="Describe your space..."
+            style={{ ...inputStyle(isMobile), resize: "none" }}
             onFocus={focus}
             onBlur={blur}
           />
         </div>
 
-        <button
+        {/* <a
+          href="https://wa.me/+918220602993?text=Hello Hari Designs! I'm interested in discussing a project."
+          target="_blank"
+          rel="noopener noreferrer"
           style={{
             display: "inline-flex",
             alignItems: "center",
+            justifyContent: isMobile ? "center" : "flex-start", // Center button on mobile
             gap: "1.2rem",
             background: T.mintDark,
             color: T.white,
@@ -210,15 +197,57 @@ export default function Contact() {
             letterSpacing: ".22em",
             textTransform: "uppercase",
             cursor: "pointer",
-            alignSelf: "flex-start",
             transition: "background .3s",
+            textDecoration: "none",
           }}
           onMouseEnter={(e) => (e.currentTarget.style.background = T.charcoal)}
           onMouseLeave={(e) => (e.currentTarget.style.background = T.mintDark)}
         >
           Send Enquiry →
-        </button>
+        </a> */}
+        <a
+          href="https://wa.me/+918220602993?text=Hello Hari Designs!..."
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "1rem",
+            background: T.mintDark,
+            color: T.white,
+            padding: isMobile ? "1rem 2rem" : "0.9rem 2rem",
+            fontFamily: "'Raleway',sans-serif",
+            fontSize: ".65rem",
+            fontWeight: 500,
+            letterSpacing: ".15em",
+            textTransform: "uppercase",
+            cursor: "pointer",
+            alignSelf: "flex-start",
+            transition: "all .3s ease",
+            textDecoration: "none",
+            borderRadius: "2px",
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = T.charcoal;
+            e.currentTarget.style.transform = "translateY(-2px)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = T.mintDark;
+            e.currentTarget.style.transform = "translateY(0)";
+          }}
+        >
+          Send Enquiry →
+        </a>
       </div>
     </section>
   );
 }
+
+const labelStyle = {
+  display: "block",
+  fontSize: ".6rem",
+  letterSpacing: ".2em",
+  textTransform: "uppercase",
+  color: T.mintDeep,
+  marginBottom: ".6rem",
+};
