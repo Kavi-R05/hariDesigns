@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import T from "../styles/tokens";
 
 const items = [
@@ -11,27 +12,82 @@ const items = [
 ];
 
 export default function Marquee() {
-  const doubled = [...items, ...items];
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Doubling or tripling the items ensures there's no gap in the loop on wide screens
+  const doubled = [...items, ...items, ...items];
+
   return (
     <div
-      style={{ background: T.mintDark, padding: "1rem 0", overflow: "hidden" }}
+      style={{
+        background: T.mintDark,
+        padding: isMobile ? "0.8rem 0" : "1.2rem 0",
+        overflow: "hidden",
+        whiteSpace: "nowrap",
+        display: "flex",
+        alignItems: "center",
+        borderTop: `1px solid ${T.mintPale}22`, // Subtle border for luxury feel
+        borderBottom: `1px solid ${T.mintPale}22`,
+      }}
     >
+      {/* Inline styles for the animation keyframes */}
+      <style>
+        {`
+          @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-33.33%); }
+          }
+          .marquee-track {
+            display: flex;
+            align-items: center;
+            width: max-content;
+            animation: marquee ${isMobile ? "20s" : "40s"} linear infinite;
+          }
+          .marquee-track:hover {
+            animation-play-state: paused;
+          }
+        `}
+      </style>
+
       <div className="marquee-track">
         {doubled.map((item, i) => (
-          <span key={i}>
+          <div
+            key={i}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              flexShrink: 0,
+            }}
+          >
             <span
               style={{
-                fontSize: ".6rem",
+                fontSize: isMobile ? ".55rem" : ".65rem",
                 letterSpacing: ".28em",
                 textTransform: "uppercase",
                 color: T.mintPale,
-                padding: "0 2.5rem",
+                padding: isMobile ? "0 1.5rem" : "0 3rem",
+                fontWeight: 300,
               }}
             >
               {item}
             </span>
-            <span style={{ color: T.gold, opacity: 0.8 }}> ✦ </span>
-          </span>
+            <span
+              style={{
+                color: T.gold || "#D4AF37",
+                opacity: 0.6,
+                fontSize: isMobile ? "0.6rem" : "0.8rem",
+              }}
+            >
+              ✦
+            </span>
+          </div>
         ))}
       </div>
     </div>
