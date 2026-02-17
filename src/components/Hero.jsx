@@ -1,28 +1,38 @@
+import { useEffect, useState } from "react";
 import T from "../styles/tokens";
 import HomeImg from "../../public/images/HomeImages.png";
 
 export default function Hero() {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 1024);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <section
       className="hero-grid"
       style={{
-        minHeight: "100vh",
+        minHeight: isMobile ? "auto" : "100vh",
         display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
         position: "relative",
         overflow: "hidden",
         background: T.cream,
       }}
     >
-      {/* Left */}
+      {/* Left Column: Text Content */}
       <div
         style={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
-          padding: "10rem 5rem 6rem",
+          padding: isMobile ? "7rem 1.5rem 4rem" : "10rem 5rem 6rem",
           position: "relative",
-          zIndex: 2,
+          zIndex: 10,
         }}
       >
         <div
@@ -31,7 +41,7 @@ export default function Hero() {
             display: "inline-flex",
             alignItems: "center",
             gap: ".8rem",
-            marginBottom: "2.5rem",
+            marginBottom: "2rem",
           }}
         >
           <span
@@ -51,7 +61,7 @@ export default function Hero() {
               color: T.mintDark,
             }}
           >
-            Luxury Interior Design ·
+            Luxury Interior Design
           </span>
         </div>
 
@@ -59,9 +69,9 @@ export default function Hero() {
           className="hero-anim-2"
           style={{
             fontFamily: "'Playfair Display',serif",
-            fontSize: "clamp(3.5rem,5.5vw,6.5rem)",
+            fontSize: isMobile ? "3rem" : "clamp(3.5rem,5.5vw,6.5rem)",
             fontWeight: 300,
-            lineHeight: 0.95,
+            lineHeight: 1.1,
             letterSpacing: "-.01em",
             color: T.charcoal,
           }}
@@ -73,7 +83,9 @@ export default function Hero() {
           <br />
           <span
             style={{
-              WebkitTextStroke: `1.5px ${T.charcoal}`,
+              WebkitTextStroke: isMobile
+                ? `1px ${T.charcoal}`
+                : `1.5px ${T.charcoal}`,
               color: "transparent",
             }}
           >
@@ -85,24 +97,24 @@ export default function Hero() {
           className="hero-anim-3"
           style={{
             maxWidth: 400,
-            fontSize: ".88rem",
-            lineHeight: 1.9,
+            fontSize: isMobile ? ".85rem" : ".88rem",
+            lineHeight: 1.8,
             color: T.warmGray,
-            marginTop: "2.5rem",
+            marginTop: "1.5rem",
           }}
         >
           We design interiors of rare beauty — spaces shaped by the rhythm of
-          your life, the quality of light, and materials chosen for how they
-          age, not just how they look.
+          your life and materials chosen for how they age.
         </p>
 
         <div
           className="hero-anim-4"
           style={{
             display: "flex",
-            alignItems: "center",
-            gap: "2.5rem",
-            marginTop: "3.5rem",
+            flexDirection: isMobile ? "column" : "row",
+            alignItems: isMobile ? "flex-start" : "center",
+            gap: isMobile ? "1.5rem" : "2.5rem",
+            marginTop: "3rem",
           }}
         >
           <a
@@ -110,21 +122,17 @@ export default function Hero() {
             style={{
               display: "inline-flex",
               alignItems: "center",
-              gap: "1rem",
+              justifyContent: "center",
+              width: isMobile ? "100%" : "auto",
               background: T.mintDark,
               color: T.white,
-              padding: "1rem 2.5rem",
+              padding: "1.1rem 2.5rem",
               fontSize: ".72rem",
               letterSpacing: ".2em",
               textTransform: "uppercase",
+              textDecoration: "none",
               transition: "background .3s",
             }}
-            onMouseEnter={(e) =>
-              (e.currentTarget.style.background = T.mintDeep)
-            }
-            onMouseLeave={(e) =>
-              (e.currentTarget.style.background = T.mintDark)
-            }
           >
             View Our Work →
           </a>
@@ -138,10 +146,8 @@ export default function Hero() {
               display: "flex",
               alignItems: "center",
               gap: ".8rem",
-              transition: "color .3s",
+              textDecoration: "none",
             }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = T.charcoal)}
-            onMouseLeave={(e) => (e.currentTarget.style.color = T.warmGray)}
           >
             Our Story
             <span
@@ -156,59 +162,64 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Right */}
+      {/* Right Column: Image */}
       <div
         className="hero-right-col"
-        style={{ position: "relative", overflow: "hidden" }}
+        style={{
+          position: "relative",
+          overflow: "hidden",
+          height: isMobile ? "400px" : "auto", // Set a fixed height for the image on mobile
+        }}
       >
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            bottom: 0,
-            width: 60,
-            background: T.mintPale,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            zIndex: 2,
-          }}
-        >
-          <span
+        {/* Side Location Bar (Hidden on Mobile) */}
+        {!isMobile && (
+          <div
             style={{
-              fontSize: ".55rem",
-              letterSpacing: ".35em",
-              textTransform: "uppercase",
-              color: T.mintDeep,
-              writingMode: "vertical-rl",
-              transform: "rotate(180deg)",
+              position: "absolute",
+              left: 0,
+              top: 0,
+              bottom: 0,
+              width: 60,
+              background: T.mintPale,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 2,
             }}
           >
-            Chennai · Kanyakumari ·
-          </span>
-        </div>
+            <span
+              style={{
+                fontSize: ".55rem",
+                letterSpacing: ".35em",
+                textTransform: "uppercase",
+                color: T.mintDeep,
+                writingMode: "vertical-rl",
+                transform: "rotate(180deg)",
+              }}
+            >
+              Chennai · Kanyakumari
+            </span>
+          </div>
+        )}
 
+        {/* Main Hero Image */}
         <div
           style={{
             position: "absolute",
             top: 0,
             right: 0,
             bottom: 0,
-            left: 60,
+            left: isMobile ? 0 : 60,
             overflow: "hidden",
           }}
         >
           <img
-            className="hero-img"
             src={HomeImg}
-            // src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=85&auto=format&fit=crop"
             alt="Luxury cream living room"
             style={{
               width: "100%",
               height: "100%",
               objectFit: "cover",
-              display: "block",
             }}
           />
           <div
@@ -216,31 +227,35 @@ export default function Hero() {
               position: "absolute",
               inset: 0,
               background:
-                "linear-gradient(135deg,rgba(248,244,238,.3) 0%,transparent 50%,rgba(61,107,88,.08) 100%)",
+                "linear-gradient(135deg,rgba(248,244,238,.2) 0%,transparent 100%)",
             }}
           />
         </div>
 
+        {/* Floating Stats Card (Centered on Mobile) */}
         <div
           className="hero-anim-5"
           style={{
             position: "absolute",
-            bottom: "3rem",
-            left: "-1rem",
-            zIndex: 5,
+            bottom: isMobile ? "1rem" : "3rem",
+            left: isMobile ? "50%" : "-1rem",
+            transform: isMobile ? "translateX(-50%)" : "none",
+            zIndex: 15,
             background: T.white,
-            padding: "1.5rem 2rem",
+            padding: isMobile ? "1rem 1.5rem" : "1.5rem 2rem",
             boxShadow: "0 20px 60px rgba(30,37,32,.12)",
-            minWidth: 220,
+            minWidth: isMobile ? "280px" : 220,
+            display: isMobile ? "flex" : "block",
+            justifyContent: isMobile ? "space-around" : "initial",
+            gap: isMobile ? "1rem" : "0",
           }}
         >
           {[
-            ["100+", "Projects Delivered"],
-            ["5", "Years of Excellence"],
-            // ["8", "Design Awards"],
+            ["100+", "Projects"],
+            ["5", "Years"],
           ].map(([n, l], i) => (
-            <div key={i}>
-              {i > 0 && (
+            <div key={i} style={{ textAlign: isMobile ? "center" : "left" }}>
+              {i > 0 && !isMobile && (
                 <div
                   style={{
                     height: 1,
@@ -252,7 +267,7 @@ export default function Hero() {
               <div
                 style={{
                   fontFamily: "'Playfair Display',serif",
-                  fontSize: "2rem",
+                  fontSize: isMobile ? "1.5rem" : "2rem",
                   fontWeight: 300,
                   color: T.charcoal,
                 }}
@@ -261,11 +276,10 @@ export default function Hero() {
               </div>
               <div
                 style={{
-                  fontSize: ".6rem",
-                  letterSpacing: ".2em",
+                  fontSize: ".55rem",
+                  letterSpacing: ".15em",
                   textTransform: "uppercase",
                   color: T.mintDeep,
-                  marginTop: ".3rem",
                 }}
               >
                 {l}
@@ -275,38 +289,39 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div
-        className="hero-anim-6"
-        style={{
-          position: "absolute",
-          bottom: "2.5rem",
-          left: "5rem",
-          display: "flex",
-          alignItems: "center",
-          gap: "1rem",
-        }}
-      >
+      {/* Scroll Indicator (Hidden on Mobile for cleaner UI) */}
+      {!isMobile && (
         <div
-          className="scroll-line"
+          className="hero-anim-6"
           style={{
-            width: 1,
-            height: 50,
-            background: `linear-gradient(to bottom, ${T.mintDeep}, transparent)`,
-          }}
-        />
-        <span
-          style={{
-            fontSize: ".6rem",
-            letterSpacing: ".22em",
-            textTransform: "uppercase",
-            color: T.warmGray,
-            writingMode: "vertical-rl",
+            position: "absolute",
+            bottom: "2.5rem",
+            left: "5rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
           }}
         >
-          Scroll
-        </span>
-      </div>
+          <div
+            style={{
+              width: 1,
+              height: 50,
+              background: `linear-gradient(to bottom, ${T.mintDeep}, transparent)`,
+            }}
+          />
+          <span
+            style={{
+              fontSize: ".6rem",
+              letterSpacing: ".22em",
+              textTransform: "uppercase",
+              color: T.warmGray,
+              writingMode: "vertical-rl",
+            }}
+          >
+            Scroll
+          </span>
+        </div>
+      )}
     </section>
   );
 }
