@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { useScrolledNav } from "../hooks";
 import T from "../styles/tokens";
+import Logo from "../../public/images/hrlogo.jpeg";
 
 const links = [
   ["#work", "Projects"],
@@ -29,7 +30,7 @@ export default function Nav() {
         transition: "background .5s, padding .4s, box-shadow .4s",
       }}
     >
-      <a
+      {/* <a
         href="#"
         style={{
           fontFamily: "'Playfair Display',serif",
@@ -40,6 +41,24 @@ export default function Nav() {
         }}
       >
         Hari <em style={{ color: T.mintDeep, fontStyle: "italic" }}>Designs</em>
+      </a> */}
+
+      <a
+        href="#"
+        style={{
+          display: "inline-block",
+          lineHeight: 0,
+        }}
+      >
+        <img
+          src={Logo}
+          alt="Hari Designs Logo"
+          style={{
+            height: "40px",
+            width: "auto",
+            display: "block",
+          }}
+        />
       </a>
 
       <ul style={{ display: "flex", gap: "3rem", listStyle: "none" }}>

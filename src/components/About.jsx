@@ -1,6 +1,7 @@
 import { SectionTag, SectionTitle } from "./UI";
 import T from "../styles/tokens";
-
+import Falseceiling from "../../public/images/Falseceiling.jpeg";
+import smallImg from "../../public/images/smallimg.jpeg";
 export default function About() {
   return (
     <section
@@ -31,8 +32,8 @@ export default function About() {
           }}
         >
           <img
-            src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=85&auto=format&fit=crop"
-            alt="Interior designer at work"
+            src={Falseceiling}
+            alt="modularkitchen at home"
             loading="lazy"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
@@ -49,7 +50,7 @@ export default function About() {
           }}
         >
           <img
-            src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=85&auto=format&fit=crop"
+            src={smallImg}
             alt="Cream sofa detail"
             loading="lazy"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
@@ -88,7 +89,7 @@ export default function About() {
           </SectionTitle>
         </div>
         {[
-          "Founded in Paris in 2012, our studio has spent over a decade translating the narratives of our clients into spaces of lasting beauty. We work at the intersection of architecture, art, and craft — always asking what a space should feel like before we consider how it looks.",
+          "Founded in Nagercoil, Kanyakumari in 2022, our studio is dedicated to translating the unique narratives of our clients into spaces of lasting beauty. We operate at the vibrant intersection of architecture, art, and craft—always prioritizing the emotional resonance of a space before defining its aesthetic.",
           "Our palette centres on the timeless harmony of cream, sage, and natural materials — warm, breathing, enduring. Every project begins with deep listening.",
         ].map((text, i) => (
           <p
@@ -116,7 +117,7 @@ export default function About() {
             marginTop: "2.5rem",
           }}
         >
-          Hari Designs
+          Hari Suthan
         </div>
         <div
           className="reveal d3"
