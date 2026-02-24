@@ -514,7 +514,7 @@ export default function About() {
         <SectionTitle
           style={{
             marginBottom: "1.5rem",
-            fontSize: isMobile ? "1.8rem" : "2.6rem",
+            fontSize: isMobile ? "2.5rem" : "2.6rem",
             lineHeight: 1.2,
           }}
         >

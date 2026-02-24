@@ -35,15 +35,14 @@ export default function Contact() {
       className="contact-grid"
       style={{
         display: "grid",
-        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", // Stack on mobile
+        gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
         minHeight: isMobile ? "auto" : "70vh",
       }}
     >
-      {/* Left Column: Information */}
       <div
         style={{
           background: T.mintDark,
-          padding: isMobile ? "4rem 1.5rem" : "7rem 5rem",
+          padding: isMobile ? "5rem 1.5rem" : "7rem 5rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -109,7 +108,7 @@ export default function Contact() {
               style={{
                 fontSize: isMobile ? ".8rem" : ".85rem",
                 color: "rgba(255,255,255,.7)",
-                wordBreak: "break-word", // Prevent email overflow on tiny screens
+                wordBreak: "break-word",
               }}
             >
               {v}
@@ -118,11 +117,10 @@ export default function Contact() {
         ))}
       </div>
 
-      {/* Right Column: Form */}
       <div
         style={{
           background: T.cream,
-          padding: isMobile ? "4rem 1.5rem" : "7rem 5rem",
+          padding: isMobile ? "5rem 1.5rem" : "7rem 5rem",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
@@ -131,7 +129,7 @@ export default function Contact() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", // Name fields stack on mobile
+            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
             gap: isMobile ? "1rem" : "2rem",
             marginBottom: "1.5rem",
           }}
