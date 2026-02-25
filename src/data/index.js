@@ -1,6 +1,6 @@
 import KitchenDesign from "../../public/images/modernkitchen.jpeg";
 import Ceiling from "../../public/images/ceiling.jpeg";
-import Ceilss from "../../public/images/ceil.jpeg";
+import Ceilss from "../../public/images/ceiilingg.jpeg";
 import ShopInterior from "../../public/images/store.jpeg";
 import Aluminumworks from "../../public/images/aluminumworks.jpeg";
 import modularKitchen from "../../public/images/modularkitchen.jpeg";
