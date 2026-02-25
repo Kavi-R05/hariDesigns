@@ -21,7 +21,6 @@ export default function Marquee() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Doubling or tripling the items ensures there's no gap in the loop on wide screens
   const doubled = [...items, ...items, ...items];
 
   return (
@@ -33,11 +32,10 @@ export default function Marquee() {
         whiteSpace: "nowrap",
         display: "flex",
         alignItems: "center",
-        borderTop: `1px solid ${T.mintPale}22`, // Subtle border for luxury feel
+        borderTop: `1px solid ${T.mintPale}22`,
         borderBottom: `1px solid ${T.mintPale}22`,
       }}
     >
-      {/* Inline styles for the animation keyframes */}
       <style>
         {`
           @keyframes marquee {
