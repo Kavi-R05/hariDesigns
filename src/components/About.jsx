@@ -1,8 +1,6 @@
-
-
 import { SectionTag, SectionTitle } from "./UI";
 import T from "../styles/tokens";
-import Falseceiling from "../../public/images/Falseceiling.jpeg";
+import Falseceiling from "../../public/images/falseceiling.jpeg";
 import smallImg from "../../public/images/smallimg.jpeg";
 import { useEffect, useState } from "react";
 
