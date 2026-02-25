@@ -1,6 +1,6 @@
 import KitchenDesign from "../../public/images/modernkitchen.jpeg";
 import Ceiling from "../../public/images/ceiling.jpeg";
-import Ceil from "../../public/images/ceil.jpeg";
+import Ceilss from "../../public/images/ceil.jpeg";
 import ShopInterior from "../../public/images/store.jpeg";
 import Aluminumworks from "../../public/images/aluminumworks.jpeg";
 import modularKitchen from "../../public/images/modularkitchen.jpeg";
@@ -20,7 +20,7 @@ export const projects = [
   },
   {
     id: "Wall Ceiling",
-    img: Ceil,
+    img: Ceilss,
     tag: "Nagercoil",
     name: "Wall\nCeiling",
   },
