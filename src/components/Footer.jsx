@@ -29,7 +29,7 @@ export default function Footer() {
             color: "rgba(255,255,255,.35)",
           }}
         >
-          © 2022 Hari Designs. All rights reserved.
+          © 2021 Hari Designs. All rights reserved.
         </div>
         <div style={{ display: "flex", gap: "2.5rem" }}>
           {[
