@@ -168,10 +168,10 @@ export default function Hero() {
         style={{
           position: "relative",
           overflow: "hidden",
-          height: isMobile ? "400px" : "auto", // Set a fixed height for the image on mobile
+          height: isMobile ? "400px" : "auto", 
         }}
       >
-        {/* Side Location Bar (Hidden on Mobile) */}
+        
         {!isMobile && (
           <div
             style={{
